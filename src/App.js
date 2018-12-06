@@ -6,6 +6,15 @@ import Users from "./components/Users"
 import NotFound from "./components/NotFound"
 
 class App extends Component {
+  goBackPage = () => {
+    const {history} = this.props;
+    history.goBack(-1);
+  }
+
+  goForwardPage = () => {
+    const {history} = this.props
+    history.goForward();
+  }
   render() {
     return (
       <Router>
