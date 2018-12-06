@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import './App.css';
+import About from "./components/About"
+import Users from "./components/Users"
+import NotFound from "./components/NotFound"
 
 class App extends Component {
   render() {
@@ -13,10 +16,10 @@ class App extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/first">First</Link>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <Link to="/second">Second</Link>
+                <Link to="/users">Users</Link>
               </li>
             </ul>
           </nav>
@@ -24,9 +27,14 @@ class App extends Component {
 <hr></hr>
           <Switch>
             <Route path="/" exact component={() => <h1>HOME</h1>} />
-            <Route path="/first" exact component={() => <h1>FIRST</h1>} />
-            <Route path="/second" exact component={() => <h1>SECOND</h1>} />
-            <Route exact component={() => <h1>404 page not found</h1>} />
+            <Route path="/about" component={About} />
+            <Route path="/users" exact component={Users} />
+            <Route path="/users/:userid" component={
+              ({match}) => {
+                return <h1>hi user {match.params.userid}</h1>
+              }
+            } />
+            <Route exact component={NotFound} />
           </Switch>
         </div>
       </Router>
